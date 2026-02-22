@@ -1,8 +1,8 @@
-name: Run AC/DC Pwr Up Tour Notification Script
+name: AC/DC Countdown
 
 on:
   schedule:
-    - cron: '0 0 * * *'
+    - cron: '0 3 * * *'
   workflow_dispatch:
 
 jobs:
@@ -15,4 +15,7 @@ jobs:
       - name: Run script
         env:
           discord_webhook_url: ${{ secrets.DISCORD_WEBHOOK_URL }}
-        run: sudo chmod +x ./acdc.sh && ./acdc.sh
+          TZ: "America/Sao_Paulo"
+        run: |
+          sudo chmod +x ./acdc.sh
+          ./acdc.sh
