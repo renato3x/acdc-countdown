@@ -1,0 +1,18 @@
+name: Run AC/DC Pwr Up Tour Notification Script
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+jobs:
+  run-shell-script:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Run script
+        env:
+          discord_webhook_url: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: sudo chmod +x ./acdc.sh && ./acdc.sh
